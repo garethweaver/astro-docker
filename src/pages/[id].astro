@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+const origin = new URL(Astro.request.url).origin
+const { id } = Astro.params;
+const response = await fetch(`${origin}/api/query.json?id=${id}`)
+const data = await response.json()
+const { title, releaseDate, openingCrawl } = data.movieData.data.film
+---
+
+<Layout title={title}>
+  <main>
+    <h1>{title}</h1>
+    <p>{releaseDate}</p>
+    <p>{openingCrawl}</p>
+  </main>
+</Layout>

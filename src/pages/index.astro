@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+const origin = new URL(Astro.request.url).origin
+const response = await fetch(`${origin}/api/query.json`)
+const data = await response.json()
+const { films } = data.movieData.data?.allFilms
+---
+
+<Layout title="Star Wars Films">
+  <main>
+    <ul>
+      {films.map(f => <li><a href={f.id}>{f.title}</a></li>)}
+    </ul>
+  </main>
+</Layout>
