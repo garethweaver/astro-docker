@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS runtime
+FROM node:18-alpine AS runtime
 WORKDIR /app
 
 COPY . .
